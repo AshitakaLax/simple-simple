@@ -14,7 +14,9 @@ class Building():
         * conditioned_floor_area:       [m**2]
     """
 
-    def __init__(self, heat_mass_capacity, heat_transmission,
+    def __init__(self, 
+	heat_mass_capacity, 
+	heat_transmission,
                  maximum_cooling_power, maximum_heating_power,
                  initial_building_temperature, time_step_size,
                  conditioned_floor_area):
@@ -73,3 +75,6 @@ class Building():
         dt_by_cm = self.__time_step_size.total_seconds() / self.__heat_mass_capacity
         return (self.current_temperature * (1 - dt_by_cm * self.__heat_transmission) +
                 dt_by_cm * (heating_cooling_power + self.__heat_transmission * outside_temperature))
+
+    def _determine_Demand(self, outside_temperature, heating_setpoint, cooling_setpoint):
+
